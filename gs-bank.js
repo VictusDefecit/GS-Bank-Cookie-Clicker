@@ -1,5 +1,3 @@
-MyMod.launch = function(){
-
 (function() {
   let goldenBank = 0;
   let bankEnabled = true;
@@ -8,24 +6,13 @@ MyMod.launch = function(){
     init: function() {
       Game.Notify("Golden Bank loaded!", "", [16, 5]);
 
-      // --- UI ---
       const widget = document.createElement("div");
       widget.id = "golden-bank-widget";
       widget.style.cssText = `
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        z-index: 9999;
-        background: rgba(0,0,0,0.75);
-        color: #fff;
-        padding: 8px 12px;
-        border-radius: 8px;
-        font-family: sans-serif;
-        font-size: 14px;
-        user-select: none;
-        display: flex;
-        align-items: center;
-        gap: 8px;
+        position: fixed; bottom: 20px; right: 20px; z-index: 9999;
+        background: rgba(0,0,0,0.75); color: #fff; padding: 8px 12px;
+        border-radius: 8px; font-family: sans-serif; font-size: 14px;
+        user-select: none; display: flex; align-items: center; gap: 8px;
       `;
 
       const countEl = document.createElement("span");
@@ -51,7 +38,6 @@ MyMod.launch = function(){
 
       document.body.appendChild(widget);
 
-      // --- Capture loop ---
       setInterval(() => {
         if (!bankEnabled) return;
         for (let i = Game.shimmers.length - 1; i >= 0; i--) {
@@ -96,7 +82,4 @@ MyMod.launch = function(){
     const el = document.getElementById("gb-count");
     if (el) el.textContent = "🍪 " + goldenBank;
   }
-})();
-
-    MyMod.isLoaded = 1;
-}
+})();   

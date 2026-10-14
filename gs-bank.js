@@ -1,6 +1,3 @@
-if(MyMod === undefined) var MyMod = {};
-if(typeof CCSE == 'undefined') Game.LoadMod('https://klattmose.github.io/CookieClicker/CCSE.js');
-
 MyMod.launch = function(){
 
 (function() {

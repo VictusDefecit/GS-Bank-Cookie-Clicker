@@ -1,3 +1,8 @@
+if(MyMod === undefined) var MyMod = {};
+if(typeof CCSE == 'undefined') Game.LoadMod('https://klattmose.github.io/CookieClicker/CCSE.js');
+
+MyMod.launch = function(){
+
 (function() {
   let goldenBank = 0;
   let bankEnabled = true;
@@ -94,4 +99,18 @@
     const el = document.getElementById("gb-count");
     if (el) el.textContent = "🍪 " + goldenBank;
   }
-})();   
+})();
+
+    MyMod.isLoaded = 1;
+}
+
+if(!MyMod.isLoaded){
+    if(CCSE && CCSE.isLoaded){
+        MyMod.launch();
+    }
+    else{
+        if(!CCSE) var CCSE = {};
+        if(!CCSE.postLoadHooks) CCSE.postLoadHooks = [];
+        CCSE.postLoadHooks.push(MyMod.launch);
+    }
+}

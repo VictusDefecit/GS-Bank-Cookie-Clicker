@@ -53,8 +53,9 @@
       setInterval(() => {
         if (!bankEnabled) return;
         for (let i = Game.shimmers.length - 1; i >= 0; i--) {
-          if (Game.shimmers[i].type === "golden") {
-            Game.shimmers.splice(i, 1);
+          if (Game.shimmers[i].type === "golden" && !Game.shimmers[i].banked && !Game.shimmers[i].released) {
+            Game.shimmers[i].banked = true;
+            Game.shimmers[i].x = -9999;
             goldenBank++;
             updateCount();
           }
@@ -70,28 +71,4 @@
       try {
         const data = JSON.parse(str) || {};
         goldenBank = data.bank || 0;
-        bankEnabled = data.enabled !== false;
-      } catch(e) {}
-      updateCount();
-      const toggleBtn = document.querySelector("#golden-bank-widget button:last-child");
-      if (toggleBtn) {
-        toggleBtn.textContent = bankEnabled ? "ON" : "OFF";
-        toggleBtn.style.background = bankEnabled ? "#4a4" : "#a44";
-      }
-    }
-  });
-
-  function releaseGolden() {
-    if (goldenBank <= 0) return;
-    goldenBank--;
-    updateCount();
-    const x = Math.random() * (window.innerWidth - 60) + 30;
-    const y = Math.random() * (window.innerHeight - 60) + 30;
-    Game.shimmers.push(new Shimmer("golden", x, y));
-  }
-
-  function updateCount() {
-    const el = document.getElementById("gb-count");
-    if (el) el.textContent = "🍪 " + goldenBank;
-  }
-})();   
+        bankE   

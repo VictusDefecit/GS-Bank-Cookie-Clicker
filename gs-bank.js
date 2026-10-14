@@ -71,4 +71,27 @@
       try {
         const data = JSON.parse(str) || {};
         goldenBank = data.bank || 0;
-        bankE   
+        bankEnabled = data.enabled !== false;
+      } catch(e) {}
+      updateCount();
+      const toggleBtn = document.querySelector("#golden-bank-widget button:last-child");
+      if (toggleBtn) {
+        toggleBtn.textContent = bankEnabled ? "ON" : "OFF";
+        toggleBtn.style.background = bankEnabled ? "#4a4" : "#a44";
+      }
+    }
+  });
+
+  function releaseGolden() {
+    if (goldenBank <= 0) return;
+    goldenBank--;
+    updateCount();
+    var s = new Game.shimmer("golden");
+    s.released = true;
+  }
+
+  function updateCount() {
+    const el = document.getElementById("gb-count");
+    if (el) el.textContent = "🍪 " + goldenBank;
+  }
+})();   

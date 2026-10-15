@@ -41,7 +41,7 @@
       setInterval(() => {
         if (!bankEnabled) return;
         for (let i = Game.shimmers.length - 1; i >= 0; i--) {
-          if (Game.shimmers[i].type === "golden" && !Game.shimmers[i].banked && !Game.shimmers[i].released && !Game.shimmers[i].storm) {
+          if (Game.shimmers[i].type === "golden" && !Game.shimmers[i].banked && !Game.shimmers[i].released && goldenBank < 40) {
             Game.shimmers[i].banked = true;
             Game.shimmers[i].l.style.display = 'none';
             goldenBank++;

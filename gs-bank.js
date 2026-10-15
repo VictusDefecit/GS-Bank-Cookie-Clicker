@@ -43,7 +43,7 @@
         for (let i = Game.shimmers.length - 1; i >= 0; i--) {
           if (Game.shimmers[i].type === "golden" && !Game.shimmers[i].banked && !Game.shimmers[i].released) {
             Game.shimmers[i].banked = true;
-            Game.shimmers[i].element.style.display = 'none';
+            Game.shimmers[i].x = -9999;
             goldenBank++;
             updateCount();
           }
